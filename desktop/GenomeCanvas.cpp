@@ -366,7 +366,8 @@ void drawAlignmentTrackGlyphs(QPainter& painter,
         painter.setBrush(QColor(255, 255, 255, 145));
         const qreal baseline = content.bottom() - 2.0;
         if (useRealPreview && !preview.coverageBins.isEmpty() && preview.maxCoverage > 0) {
-            const qreal barWidth = std::max(3.0, contentWidth / std::max(8, preview.coverageBins.size() + 2));
+            const int coverageBinCount = std::max(8, static_cast<int>(preview.coverageBins.size()) + 2);
+            const qreal barWidth = std::max(3.0, contentWidth / coverageBinCount);
             for (int barIndex = 0; barIndex < preview.coverageBins.size(); ++barIndex) {
                 const qreal normalized =
                     static_cast<qreal>(preview.coverageBins.at(barIndex)) / static_cast<qreal>(preview.maxCoverage);
@@ -566,7 +567,7 @@ void GenomeCanvas::paintEvent(QPaintEvent* event) {
                          .arg(state_.rois.size()));
 
     const QStringList loci = visibleLoci(state_);
-    const int panelCount = std::max(1, loci.size());
+    const int panelCount = std::max(1, static_cast<int>(loci.size()));
     const qreal panelGap = 12.0;
     const qreal totalGap = panelGap * (panelCount - 1);
     const qreal panelWidth = (frame.width() - 36.0 - totalGap) / panelCount;
@@ -641,7 +642,7 @@ void GenomeCanvas::paintEvent(QPaintEvent* event) {
             }
         }
 
-        const int trackCount = std::max(1, state_.tracks.size());
+        const int trackCount = std::max(1, static_cast<int>(state_.tracks.size()));
         const qreal laneHeight = std::clamp((panelRect.height() - 108.0) / trackCount - 6.0, 26.0, 48.0);
         qreal laneTop = panelRect.top() + 82.0;
 
