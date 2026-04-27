@@ -6,4 +6,5 @@ const char* igv_roadmap_json();
 const char* igv_design_notes_markdown();
 const char* igv_source_links_markdown();
 const char* igv_demo_session_json();
+const char* igv_alignment_preview_json(const char* source, const char* locus);
 }

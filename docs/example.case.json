@@ -1,0 +1,52 @@
+{
+  "schema": "igv-native-case/v1",
+  "title": "EGFR Tumor-Normal Review",
+  "description": "Case-first workspace for reviewing EGFR hotspots and copy-number context.",
+  "session_file": "sessions/egfr-review.xml",
+  "loci": [
+    "chr7:55174772-55174772",
+    "chr7:55242465-55242465"
+  ],
+  "multi_locus": true,
+  "tracks": [
+    {
+      "name": "Tumor DNA",
+      "source": "tracks/tumor.bam",
+      "kind": "alignment",
+      "requires_index": true,
+      "group": "tumor",
+      "expected_genome": "GRCh38/hg38"
+    },
+    {
+      "name": "Normal DNA",
+      "source": "tracks/normal.bam",
+      "kind": "alignment",
+      "index_source": "tracks/normal.bam.bai",
+      "group": "normal",
+      "expected_genome": "GRCh38/hg38"
+    },
+    {
+      "name": "Copy Number",
+      "source": "tracks/copy-number.seg",
+      "kind": "quantitative",
+      "group": "cohort"
+    }
+  ],
+  "rois": [
+    {
+      "locus": "chr7:55174760-55174790",
+      "label": "EGFR L858R hotspot"
+    }
+  ],
+  "review_queue": [
+    {
+      "locus": "chr7:55174772-55174772",
+      "label": "EGFR L858R",
+      "status": "follow-up",
+      "note": "Confirm with tumor-normal comparison and copy-number track."
+    }
+  ],
+  "sample_info_files": [
+    "metadata/sample-info.tsv"
+  ]
+}
